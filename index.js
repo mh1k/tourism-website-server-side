@@ -23,6 +23,7 @@ async function run() {
         const packageCollection = database.collection('packages');
         const ordersCollection = database.collection('orders');
         const othersplaceCollection = database.collection('othersplace');
+        const bangladeshCollection = database.collection('bangladeshplace');
 
         // GET PACKAGE API
         app.get('/packages', async (req, res) => {
@@ -46,6 +47,14 @@ async function run() {
         //Ohters place collection
         app.get('/othersplace', async (req, res) => {
             const cursor = othersplaceCollection.find({});
+            const packages = await cursor.toArray();
+            res.send(packages);
+        });
+        
+        
+        //Bangladesh place collection
+        app.get('/banglaplace', async (req, res) => {
+            const cursor = bangladeshCollection.find({});
             const packages = await cursor.toArray();
             res.send(packages);
         });
